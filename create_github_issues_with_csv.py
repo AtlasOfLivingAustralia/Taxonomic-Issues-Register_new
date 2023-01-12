@@ -12,8 +12,8 @@ from pprint import pprint
 from functools import partial
 from typing import Generator
 
-REPO = "[owner]/[repo]"
-PROJECT = "[projectname]"
+REPO = "[TaniaGLaity]/[Taxonomic-Issues-Register]"
+PROJECT = "[Taxonomy]"
 DATA = """
 Milestone 1,Task 1
 Milestone 1,Task 2
