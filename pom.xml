@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <groupId>au.org.ala</groupId>
+        <artifactId>ala-name-matching</artifactId>
+        <version>4.4-SNAPSHOT</version>
+    </parent>
+
+    <artifactId>ala-name-matching-issues</artifactId>
+    <packaging>jar</packaging>
+
+    <name>Taxonomic Issues Register Test Cases</name>
+    <description>Test cases for the issues recorded in the issues register</description>
+
+    <dependencies>
+        <dependency>
+            <groupId>au.org.ala</groupId>
+            <artifactId>ala-name-matching-model</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>au.org.ala</groupId>
+            <artifactId>ala-name-matching-search</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-log4j12</artifactId>
+            <version>${slf4j.version}</version>
+        </dependency>
+     </dependencies>
+
+</project>
