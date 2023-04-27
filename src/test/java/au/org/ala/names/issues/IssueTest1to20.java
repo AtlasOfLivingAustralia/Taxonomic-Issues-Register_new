@@ -157,4 +157,116 @@ public class IssueTest1to20 {
 
     }
 
+    // Test for issue 11
+    // Flag non-authoratative
+    @Ignore
+    public void testIssue11() throws Exception {
+    }
+
+
+    // Test for issue 12
+    // Blechnum rupestre (Kaulf. ex Link) Christenh. x Blechnum medium (R.Br.) Christenh. returns error
+    @Test
+    public void testIssue12() throws Exception {
+        NameSearchResult result = searcher.searchForRecord("Blechnum rupestre (Kaulf. ex Link) Christenh. x Blechnum medium (R.Br.) Christenh.");
+        assertNotNull(result);
+        assertEquals("https://id.biodiversity.org.au/name/apni/51405246", result.getLsid());
+    }
+
+
+    // Test for issue 13
+    // Pomaderris phylicifolia subsp. ericoides
+    @Test
+    public void testIssue13() throws Exception {
+        NameSearchResult result = searcher.searchForRecord("Pomaderris phylicifolia subsp. ericoides");
+        assertNotNull(result);
+        assertEquals("https://id.biodiversity.org.au/node/apni/2899680", result.getLsid());
+    }
+
+    // Test for issue 14
+    // How to look up species
+    @Ignore
+    public void testIssue14() throws Exception {
+    }
+
+    // Test for issue 15
+    // Thinornis rubricollis to be made synonym of Thinornis cucullatus (Vieillot, 1818)
+    @Test
+    public void testIssue15() throws Exception {
+        NameSearchResult result = searcher.searchForRecord("Thinornis rubricollis");
+        assertNotNull(result);
+        assertEquals("ALA_DR7933_?", result.getLsid());
+        assertEquals("https://biodiversity.org.au/afd/taxa/1ebf8ec6-9aee-4b58-8789-0be73eb97b2f", result.getAcceptedLsid());
+
+        result = searcher.searchForRecord("Thinornis rubricollis rubricollis");
+        assertNotNull(result);
+        assertEquals("ALA_DR7933_?", result.getLsid());
+        assertEquals("https://biodiversity.org.au/afd/taxa/1ebf8ec6-9aee-4b58-8789-0be73eb97b2f", result.getAcceptedLsid());
+    }
+
+
+    // Test for issue 16
+    // Pterostylis cucullata ssp. sylvicola, P. cucullata ssp. cucullata synonyms of P. cucullata
+    @Test
+    public void testIssue16() throws Exception {
+        NameSearchResult result = searcher.searchForRecord("Pterostylis cucullata subsp. sylvicola");
+        assertNotNull(result);
+        assertEquals("https://id.biodiversity.org.au/instance/apni/51411222", result.getLsid());
+        assertEquals("https://id.biodiversity.org.au/taxon/apni/51412090", result.getAcceptedLsid());
+
+
+        result = searcher.searchForRecord("Pterostylis cucullata subsp. cucullata");
+        assertNotNull(result);
+        assertEquals("https://id.biodiversity.org.au/instance/apni/51411219", result.getLsid());
+        assertEquals("https://id.biodiversity.org.au/taxon/apni/51412090", result.getAcceptedLsid());
+
+        result = searcher.searchForRecord("Pterostylis cucullata ssp. cucullata");
+        assertNotNull(result);
+        assertEquals("https://id.biodiversity.org.au/instance/apni/51411219", result.getLsid());
+        assertEquals("https://id.biodiversity.org.au/taxon/apni/51412090", result.getAcceptedLsid());
+
+        result = searcher.searchForRecord("Pterostylis cucullata ssp. sylvicola");
+        assertNotNull(result);
+        assertEquals("https://id.biodiversity.org.au/instance/apni/51411222", result.getLsid());
+        assertEquals("https://id.biodiversity.org.au/taxon/apni/51412090", result.getAcceptedLsid());
+    }
+
+
+    // Test for issue 17
+    // Prasophyllum parvicallum, Genoplesium parvicallum need to be synonyms of Corunastylis parvicalla
+    @Test
+    public void testIssue17() throws Exception {
+        NameSearchResult result = searcher.searchForRecord("Prasophyllum parvicallum");
+        assertNotNull(result);
+        assertEquals("https://id.biodiversity.org.au/instance/apni/51423009", result.getLsid());
+        assertEquals("https://id.biodiversity.org.au/taxon/apni/51441297", result.getAcceptedLsid());
+
+
+        result = searcher.searchForRecord("Genoplesium parvicallum");
+        assertNotNull(result);
+        assertEquals("https://id.biodiversity.org.au/instance/apni/51423010", result.getLsid());
+        assertEquals("https://id.biodiversity.org.au/taxon/apni/51441297", result.getAcceptedLsid());
+    }
+
+
+    // Test for issue 18
+    // PHA list unmatched names
+    @Ignore
+    public void testIssue18() throws Exception {
+    }
+
+    // Test for issue 19
+    // Petrogale lateralis subsp. (WAM M15135)
+    @Ignore
+    public void testIssue19() throws Exception {
+    }
+
+
+    // Test for issue 20
+    // Petrogale lateralis subsp. (ANWC CM15314)
+    @Ignore
+    public void testIssue20() throws Exception {
+    }
+
+
 }
