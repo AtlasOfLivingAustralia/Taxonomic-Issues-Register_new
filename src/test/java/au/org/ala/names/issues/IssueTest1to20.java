@@ -10,14 +10,7 @@ import org.junit.Test;
 
 import static org.junit.Assert.*;
 
-public class IssueTest1to20 {
-    private static ALANameSearcher searcher;
-
-    @BeforeClass
-    public static void init() throws Exception {
-        searcher = new ALANameSearcher("/data/lucene/namematching-20230329-1");
-    }
-
+public class IssueTest1to20 extends AbstractIssueTest {
     // Test for issue 1
     // Not required, as a query over identifier conventions
     @Ignore

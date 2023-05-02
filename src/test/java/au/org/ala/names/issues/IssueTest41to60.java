@@ -11,14 +11,7 @@ import org.junit.Test;
 
 import static org.junit.Assert.*;
 
-public class IssueTest41to60 {
-    private static ALANameSearcher searcher;
-
-    @BeforeClass
-    public static void init() throws Exception {
-        searcher = new ALANameSearcher("/data/lucene/namematching-20230329-1");
-    }
-
+public class IssueTest41to60 extends AbstractIssueTest {
     // Test for issue 41
     // Calyptorhynchus lathami lathami duplicates
     @Test
