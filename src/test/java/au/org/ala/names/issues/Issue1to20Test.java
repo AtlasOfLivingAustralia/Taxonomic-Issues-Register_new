@@ -2,15 +2,13 @@ package au.org.ala.names.issues;
 
 import au.org.ala.names.model.LinnaeanRankClassification;
 import au.org.ala.names.model.NameSearchResult;
-import au.org.ala.names.search.ALANameSearcher;
 import au.org.ala.names.search.HomonymException;
-import org.junit.BeforeClass;
 import org.junit.Ignore;
 import org.junit.Test;
 
 import static org.junit.Assert.*;
 
-public class IssueTest1to20 extends AbstractIssueTest {
+public class Issue1to20Test extends AbstractIssueTest {
     // Test for issue 1
     // Not required, as a query over identifier conventions
     @Ignore

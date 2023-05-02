@@ -1,16 +1,12 @@
 package au.org.ala.names.issues;
 
 import au.org.ala.names.model.*;
-import au.org.ala.names.search.ALANameSearcher;
-import au.org.ala.names.search.ExcludedNameException;
-import au.org.ala.names.search.MisappliedException;
-import org.junit.BeforeClass;
 import org.junit.Ignore;
 import org.junit.Test;
 
 import static org.junit.Assert.*;
 
-public class IssueTest81to100 extends AbstractIssueTest {
+public class Issue81to100Test extends AbstractIssueTest {
     // Test for issue 81
     // New species in Drummondita missing from ALA
     @Test
