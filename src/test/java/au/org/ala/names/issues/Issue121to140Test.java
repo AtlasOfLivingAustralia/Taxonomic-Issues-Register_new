@@ -134,7 +134,7 @@ public class Issue121to140Test extends AbstractIssueTest {
 
 
     // Test for issue 129
-    // Junior synonym shown instead of accepted name - Thelymitra mackibbinii F.Muell. not Thelymitra x mackibbinii
+    // Junior synonym shown instead of accepted name -Thelymitra mackibbinii F.Muell. not Thelymitra x mackibbinii
     @Test
     public void testIssue129() throws Exception {
         NameSearchResult result, misapplied;
@@ -220,5 +220,62 @@ public class Issue121to140Test extends AbstractIssueTest {
         assertEquals("https://biodiversity.org.au/afd/taxa/ab2ce457-c400-44e2-86cf-108d10f425d7", result.getLsid());
         assertEquals("https://biodiversity.org.au/afd/taxa/c521424d-2add-47a9-98b2-a4de4affe739", result.getAcceptedLsid());
     }
+
+
+    // Test for issue 132
+    // Misplacement of Codium (algae)
+    @Test
+    public void testIssue132() throws Exception {
+        NameSearchResult result;
+
+        try {
+            result = searcher.searchForRecord("Codium");
+            fail("Expecting homonym exception");
+        } catch (HomonymException ex) {
+            assertEquals(2, ex.getResults().size());
+            result = ex.getResults().get(0);
+            assertEquals("https://biodiversity.org.au/afd/taxa/ff8b3656-55de-4146-be42-27904d5fbe85", result.getLsid());
+            assertEquals("https://biodiversity.org.au/afd/taxa/bd273b8b-4752-4f56-874c-a2250d53a4e2", result.getAcceptedLsid());
+            result = ex.getResults().get(1);
+            assertEquals("NZOR-6-62176", result.getLsid());
+            assertEquals(null, result.getAcceptedLsid());
+        }
+
+        LinnaeanRankClassification cl = new LinnaeanRankClassification();
+        cl.setScientificName("Codium");
+        cl.setKingdom("Plantae");
+        MetricsResultDTO metrics = searcher.searchForRecordMetrics(cl, false);
+        assertTrue(metrics.getErrors().contains(ErrorType.NONE));
+        this.reportResult("132a", metrics.getResult());
+        assertNotNull(metrics.getResult());
+        assertEquals("NZOR-6-62176", metrics.getResult().getLsid());
+        assertEquals("Codiaceae", metrics.getResult().getRankClassification().getFamily());
+
+        result = searcher.searchForRecord("Codium bursa");
+        this.reportResult("132b", result);
+        assertNotNull(metrics.getResult());
+        assertEquals("NZOR-6-19985", result.getLsid());
+        assertEquals(null, result.getAcceptedLsid());
+        assertEquals("NZOR-6-62176", result.getRankClassification().getGid());
+
+    }
+
+
+    // Test for issue 133
+    // MNimbosocus - Myopsocus - failure to synonymise in Pyscoptera
+    @Test
+    public void testIssue133() throws Exception {
+        NameSearchResult result;
+        result = searcher.searchForRecord("Nimbopsocus australis");
+        this.reportResult("133a", result);
+        assertNotNull(result);
+        assertEquals("https://biodiversity.org.au/afd/taxa/732b2ee3-4bc3-47b2-bda7-ef9bec49fb27", result.getLsid());
+        assertEquals(null, result.getAcceptedLsid());
+        result = searcher.searchForRecord("Myopsocus australis");
+        this.reportResult("133b", result);
+        assertNotNull(result);
+        assertEquals("https://biodiversity.org.au/afd/taxa/345ac449-ad4d-485c-acdf-d042d117f390", result.getLsid());
+        assertEquals("https://biodiversity.org.au/afd/taxa/732b2ee3-4bc3-47b2-bda7-ef9bec49fb27", result.getAcceptedLsid());
+   }
 
 }

@@ -12,7 +12,7 @@ public class AbstractIssueTest {
 
     @BeforeClass
     public static void init() throws Exception {
-        searcher = new ALANameSearcher("/data/lucene/namematching-20230329-1");
+        searcher = new ALANameSearcher("/data/lucene/namematching-20230329-2");
     }
 
     /**
