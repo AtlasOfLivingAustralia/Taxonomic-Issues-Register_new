@@ -2,13 +2,12 @@ package au.org.ala.names.issues;
 
 import au.org.ala.names.model.*;
 import au.org.ala.names.search.HomonymException;
-import au.org.ala.names.search.MisappliedException;
 import org.junit.Ignore;
 import org.junit.Test;
 
 import static org.junit.Assert.*;
 
-public class Issue161to80Test extends AbstractIssueTest {
+public class Issue61to80Test extends AbstractIssueTest {
     // Test for issue 61
     // Philomachus pugnax is a synonym of Calidris pugnax
     @Test
@@ -196,6 +195,198 @@ public class Issue161to80Test extends AbstractIssueTest {
     // BIE/EoL issue
     @Ignore
     public void testIssue70() throws Exception {
+    }
+
+    // Test for issue 71
+    // Errors in sensitivity status - Darwinia and Eutaxia
+    // SDS issue
+    @Ignore
+    public void testIssue71() throws Exception {
+    }
+
+    // Test for issue 72
+    // Phrase name for listed species Arthrostylis sp. Kalumburu (K.L. Wilson 10101) PN missing from ALA
+    @Test
+    public void testIssue72() throws Exception {
+        NameSearchResult result;
+        result = searcher.searchForRecord("Arthrostylis sp. Kalumburu (K.L. Wilson 10101)");
+        this.reportResult("72", result);
+        assertNotNull(result);
+        assertEquals("ALA_DR467_433", result.getLsid());
+        assertEquals(null, result.getAcceptedLsid());
+    }
+
+    // Test for issue 73
+    // Incorrect listed species synonym in ALA - Acacia karina/karinae
+    @Test
+    public void testIssue73() throws Exception {
+        NameSearchResult result;
+        result = searcher.searchForRecord("Acacia karina");
+        this.reportResult("73a", result);
+        assertNotNull(result);
+        assertEquals("https://id.biodiversity.org.au/node/apni/2906348", result.getLsid());
+        assertEquals(null, result.getAcceptedLsid());
+
+        result = searcher.searchForRecord("Acacia karinae");
+        this.reportResult("73b", result);
+        assertNotNull(result);
+        assertEquals("https://id.biodiversity.org.au/name/apni/51680367", result.getLsid());
+        assertEquals(null, result.getAcceptedLsid());
+    }
+
+
+    // Test for issue 74
+    // Revision of Genus Balaustion Hook. (including listed species)
+    // Require examples of listed species
+    @Ignore
+    public void testIssue74() throws Exception {
+    }
+
+
+    // Test for issue 75
+    // Review of Austrostipa missing from ALA including threatened species
+    @Test
+    public void testIssue75() throws Exception {
+        NameSearchResult result;
+        result = searcher.searchForRecord("Austrostipa burgesiana");
+        this.reportResult("75a", result);
+        assertNotNull(result);
+        assertEquals("https://id.biodiversity.org.au/name/apni/51679893", result.getLsid());
+        assertEquals(null, result.getAcceptedLsid());
+
+        result = searcher.searchForRecord("Austrostipa everettiana");
+        this.reportResult("75b", result);
+        assertNotNull(result);
+        assertEquals("https://id.biodiversity.org.au/name/apni/51679722", result.getLsid());
+        assertEquals(null, result.getAcceptedLsid());
+
+        result = searcher.searchForRecord("Austrostipa frankliniae");
+        this.reportResult("75c", result);
+        assertNotNull(result);
+        assertEquals("https://id.biodiversity.org.au/name/apni/51680089", result.getLsid());
+        assertEquals(null, result.getAcceptedLsid());
+
+        result = searcher.searchForRecord("Austrostipa heteranthera");
+        this.reportResult("75d", result);
+        assertNotNull(result);
+        assertEquals("https://id.biodiversity.org.au/name/apni/51679759", result.getLsid());
+        assertEquals(null, result.getAcceptedLsid());
+
+        result = searcher.searchForRecord("Austrostipa koordana");
+        this.reportResult("75e", result);
+        assertNotNull(result);
+        assertEquals("https://id.biodiversity.org.au/name/apni/51679731", result.getLsid());
+        assertEquals(null, result.getAcceptedLsid());
+
+        result = searcher.searchForRecord("Austrostipa nunaginensis");
+        this.reportResult("75f", result);
+        assertNotNull(result);
+        assertEquals("https://id.biodiversity.org.au/name/apni/51680096", result.getLsid());
+        assertEquals(null, result.getAcceptedLsid());
+
+        result = searcher.searchForRecord("Austrostipa turbinata");
+        this.reportResult("75g", result);
+        assertNotNull(result);
+        assertEquals("https://id.biodiversity.org.au/name/apni/51679736", result.getLsid());
+        assertEquals(null, result.getAcceptedLsid());
+    }
+
+
+    // Test for issue 76
+    // PMissing phrase name threatened species Calandrinia sp. Bayswater (C. Andrews s.n. 11/1902) PN
+    @Test
+    public void testIssue76() throws Exception {
+        NameSearchResult result;
+        result = searcher.searchForRecord("Calandrinia sp. Bayswater (C. Andrews s.n. 11/1902)");
+        this.reportResult("76a", result);
+        assertNotNull(result);
+        assertEquals("https://id.biodiversity.org.au/name/apni/51725133", result.getLsid());
+        assertEquals(null, result.getAcceptedLsid());
+
+        try {
+            result = searcher.searchForRecord("Calandrinia sp. Hamelin Station (F. Obbens FO 02/20)");
+            fail("Expecting homonym");
+        } catch (HomonymException ex) {
+            assertEquals(2, ex.getResults().size());
+            result =  ex.getResults().get(0);
+            this.reportResult("76b-0", result);
+            assertEquals("https://id.biodiversity.org.au/name/apni/51680119", result.getLsid());
+            result =  ex.getResults().get(1);
+            this.reportResult("76b-1", result);
+            assertEquals("https://id.biodiversity.org.au/name/apni/51680122", result.getLsid());
+        }
+
+        result = searcher.searchForRecord("Calandrinia sp. Lennard River (W.V. Fitzgerald 739)");
+        this.reportResult("76c", result);
+        assertNotNull(result);
+        assertEquals("https://id.biodiversity.org.au/name/apni/51691509", result.getLsid());
+        assertEquals(null, result.getAcceptedLsid());
+
+        result = searcher.searchForRecord("Calandrinia sp. Mt Vernon Station (T.L. Setter 427)");
+        this.reportResult("76d", result);
+        assertNotNull(result);
+        assertEquals("ALA_DR467_823", result.getLsid());
+        assertEquals(null, result.getAcceptedLsid());
+    }
+
+    // Test for issue 77
+    // Species described in Calytrix missing from ALA
+    @Test
+    public void testIssue77() throws Exception {
+        NameSearchResult result;
+        result = searcher.searchForRecord("Calytrix calingiri");
+        this.reportResult("77a", result);
+        assertNotNull(result);
+        assertEquals("https://id.biodiversity.org.au/name/apni/51694225", result.getLsid());
+        assertEquals(null, result.getAcceptedLsid());
+
+        result = searcher.searchForRecord("Calytrix sp. Learmonth (S. Fox EMopp 1)");
+        this.reportResult("77b", result);
+        assertNotNull(result);
+        assertEquals("https://id.biodiversity.org.au/name/apni/51462053", result.getLsid());
+        assertEquals(null, result.getAcceptedLsid());
+
+        result = searcher.searchForRecord("Calytrix sp. Wandana (G. Byrne 1750)");
+        this.reportResult("77c", result);
+        assertNotNull(result);
+        assertEquals("ALA_DR467_895", result.getLsid());
+        assertEquals(null, result.getAcceptedLsid());
+    }
+
+    // Test for issue 78
+    // Threatened species missing from ALA Convolvulus pyrophilus
+    @Test
+    public void testIssue78() throws Exception {
+        NameSearchResult result;
+        result = searcher.searchForRecord("Convolvulus pyrophilus");
+        this.reportResult("78", result);
+        assertNotNull(result);
+        assertEquals("https://id.biodiversity.org.au/name/apni/51631139", result.getLsid());
+        assertEquals(null, result.getAcceptedLsid());
+    }
+
+    // Test for issue 79
+    // Threatened species missing from ALA Dielsiodoxa altimontana
+    @Test
+    public void testIssue79() throws Exception {
+        NameSearchResult result;
+        result = searcher.searchForRecord("Dielsiodoxa altimontana");
+        this.reportResult("79", result);
+        assertNotNull(result);
+        assertEquals("https://id.biodiversity.org.au/name/apni/51694038", result.getLsid());
+        assertEquals(null, result.getAcceptedLsid());
+    }
+
+    // Test for issue 80
+    // New species (2020) missing from ALA Dolichocarpa sp. Hamersley Station (A.A. Mitchell PRP 1479) PN
+    @Test
+    public void testIssue80() throws Exception {
+        NameSearchResult result;
+        result = searcher.searchForRecord("Dolichocarpa sp. Hamersley Station (A.A. Mitchell PRP 1479)");
+        this.reportResult("80", result);
+        assertNotNull(result);
+        assertEquals("https://id.biodiversity.org.au/name/apni/51417735", result.getLsid());
+        assertEquals(null, result.getAcceptedLsid());
     }
 
     // Pseudomys pilligaensis synonym check
